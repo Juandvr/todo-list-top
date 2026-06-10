@@ -7,6 +7,26 @@
 </head>
 <body>
     <div id="sidebar"></div>
-    <div id="todos"></div>
+    <div id="main">
+        <button id="addBtn">+ Add task</button>
+        <div id="todos"></div>
+    </div>
+    <div id="todoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>New Task</p>
+            <form action="" id="todoForm">
+                <input type="text" id="title" placeholder="Title">
+                <input type="text" id="description" placeholder="Description">
+                <input type="date" id="dueDate" placeholder="Due date">
+                <select name="priority" id="priority">
+                    <option value="">Priority</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
