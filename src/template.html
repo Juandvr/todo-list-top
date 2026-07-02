@@ -16,15 +16,16 @@
             <span class="close">&times;</span>
             <p>New Task</p>
             <form action="" id="todoForm">
-                <input type="text" id="title" placeholder="Title">
-                <input type="text" id="description" placeholder="Description">
-                <input type="date" id="dueDate" placeholder="Due date">
-                <select name="priority" id="priority">
+                <input type="text" id="title" name="title" placeholder="Title">
+                <input type="text" id="description" name="description" placeholder="Description">
+                <input type="date" id="dueDate" name="dueDate" placeholder="Due date">
+                <select name="priority" id="priority" name="priority">
                     <option value="">Priority</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
+                <button type="submit">Create task</button>
             </form>
         </div>
     </div>
