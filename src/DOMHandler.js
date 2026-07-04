@@ -42,15 +42,20 @@ function displayTodos() {
 
     const title = document.createElement('p')
     const desc = document.createElement('p')
+    const dateLabel = document.createElement('label')
     const dueDate = document.createElement('p')
+    const priorLabel = document.createElement('label')
     const prior = document.createElement('p')
+
+    dateLabel.textContent = 'Due Date:'
+    priorLabel.textContent = 'Priority:'
 
     title.textContent = todo.title
     desc.textContent = todo.description
     dueDate.textContent = todo.dueDate
     prior.textContent = todo.priority
 
-    div.append(title, desc, dueDate, prior)
+    div.append(title, desc, dateLabel, dueDate, priorLabel, prior)
     todosDiv.append(div)
   })
 }
