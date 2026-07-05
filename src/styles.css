@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -40,13 +44,12 @@
     flex-direction: column;
 }
 
-#todos {
+.todoDiv {
     display: grid;
     background-color: #e6e6e6;
     border-radius: 10px;
     width: 15%;
     margin: 15px;
     padding: 10px;
-    font-family: Arial, sans-serif;
     justify-content: center;
 }
