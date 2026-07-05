@@ -1,44 +1,78 @@
-import { createTodo } from './dataHandler.js'
+import { createTodo, createProject, loadTodos, projects, todos } from './dataHandler.js'
 
-const modal = document.getElementById('todoModal');
-const btn = document.getElementById('addBtn');
-const span = document.getElementsByClassName('close')[0];
+const projectsDiv = document.getElementById('projects')
+const projectModal = document.getElementById('projectModal')
+const newProjectBtn = document.getElementById('newProject')
+const projectForm = document.getElementById('projectForm')
+const todoModal = document.getElementById('todoModal')
+const newTaskBtn = document.getElementById('newTask')
+const closeBtn = document.getElementsByClassName('close')
 const todoForm = document.getElementById('todoForm')
 const todosDiv = document.getElementById('todos')
 
-btn.onclick = function() {
-  modal.style.display = 'block';
+let activeProject = 'default'
+
+newTaskBtn.onclick = () => {
+  todoModal.style.display = 'block'
 }
 
-span.onclick = function() {
-  modal.style.display = 'none';
+newProjectBtn.onclick = () => {
+  projectModal.style.display = 'block'
 }
 
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = 'none';
+closeBtn.onclick = () => {
+  todoModal.style.display, projectModal.style.display = 'none'
+}
+
+window.onclick = event => {
+  if (event.target == projectModal || event.target == todoModal ) {
+    todoModal.style.display, projectModal.style.display = 'none'
   }
 }
 
 window.onload = () => {
+  loadTodos()
+  displayProjects()
   displayTodos()
 }
 
-todoForm.addEventListener('submit', (event) => {
+projectForm.onsubmit = event => {
+  event.preventDefault()
+  const formData = new FormData(projectForm)
+  const data = Object.fromEntries(formData.entries())
+  createProject(data)
+  projectForm.reset()
+  projectModal.style.display = 'none'
+  displayProjects()
+}
+
+todoForm.onsubmit = event => {
     event.preventDefault()
     const formData = new FormData(todoForm)
     const data = Object.fromEntries(formData.entries())
     createTodo(data)
     todoForm.reset()
-    modal.style.display = 'none'
+    todoModal.style.display = 'none'
     displayTodos()
-})
+}
+
+function displayProjects() {
+  projectsDiv.replaceChildren()
+  projects.forEach(project => {
+    const span = document.createElement('span')
+    span.textContent = project.title
+    span.onclick = () => {
+      activeProject = span.textContent
+    }
+    projectsDiv.append(span)
+  })
+}
 
 function displayTodos() {
-  const todos = JSON.parse(localStorage.getItem('todos'))
-
+  todosDiv.replaceChildren()
   todos.forEach(todo => {
     const div = document.createElement('div')
+    div.className = 'todoDiv'
 
     const title = document.createElement('p')
     const desc = document.createElement('p')
@@ -59,3 +93,5 @@ function displayTodos() {
     todosDiv.append(div)
   })
 }
+
+export { activeProject }

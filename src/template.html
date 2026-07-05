@@ -6,10 +6,24 @@
     <title>To Do</title>
 </head>
 <body>
-    <div id="sidebar"></div>
+    <div id="sidebar">
+        <p>Projects</p>
+        <button id="newProject">+ New Project</button>
+        <div id="projects"></div>
+    </div>
     <div id="main">
-        <button id="addBtn">+ Add task</button>
+        <button id="newTask">+ New Task</button>
         <div id="todos"></div>
+    </div>
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>New Project</p>
+            <form action="" id="projectForm">
+                <input type="text" id="title" name="title" placeholder="Title">
+                <button type="submit">Create Project</button>
+            </form>
+        </div>
     </div>
     <div id="todoModal" class="modal">
         <div class="modal-content">
