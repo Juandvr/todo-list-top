@@ -10,7 +10,7 @@ const closeBtn = document.getElementsByClassName('close')
 const todoForm = document.getElementById('todoForm')
 const todosDiv = document.getElementById('todos')
 
-let activeProject = 'default'
+let activeProject = projects[0]
 
 newTaskBtn.onclick = () => {
   todoModal.style.display = 'block'
@@ -62,7 +62,8 @@ function displayProjects() {
     const span = document.createElement('span')
     span.textContent = project.title
     span.onclick = () => {
-      activeProject = span.textContent
+      activeProject = project
+      console.log(activeProject.title)
     }
     projectsDiv.append(span)
   })
