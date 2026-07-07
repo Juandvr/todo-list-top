@@ -3,12 +3,6 @@ import { activeProject } from './DOMHandler.js'
 
 let projects = JSON.parse(localStorage.getItem('projects')) || [new Project('default')]
 
-function createTodo(data) {
-    const newTodo = new ToDo(data.title, data.description, data.dueDate, data.priority)
-    activeProject.addTodo(newTodo)
-    localStorage.setItem('projects', JSON.stringify(projects))
-}
-
 function createProject(data) {
     const newProject = new Project(data.title)
     projects.push(newProject)
@@ -22,4 +16,15 @@ function reviveProjects() {
     })
 }
 
-export { createTodo, createProject, reviveProjects, projects }
+function createTodo(data) {
+    const newTodo = new ToDo(data.title, data.description, data.dueDate, data.priority)
+    activeProject.addTodo(newTodo)
+    localStorage.setItem('projects', JSON.stringify(projects))
+}
+
+function removeTodo(todo) {
+    activeProject.removeTodo(todo)
+    localStorage.setItem('projects', JSON.stringify(projects))
+}
+
+export { createTodo, createProject, reviveProjects, removeTodo, projects }

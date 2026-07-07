@@ -1,4 +1,4 @@
-import { createTodo, createProject, reviveProjects, projects } from './dataHandler.js'
+import { createTodo, createProject, reviveProjects, removeTodo, projects } from './dataHandler.js'
 
 const projectsDiv = document.getElementById('projects')
 const projectModal = document.getElementById('projectModal')
@@ -10,7 +10,7 @@ const closeBtn = document.getElementsByClassName('close')
 const todoForm = document.getElementById('todoForm')
 const todosDiv = document.getElementById('todos')
 
-let activeProject = projects[0]
+let activeProject
 
 newTaskBtn.onclick = () => {
   todoModal.style.display = 'block'
@@ -32,6 +32,7 @@ window.onclick = event => {
 
 window.onload = () => {
   reviveProjects()
+  activeProject = projects[0]
   displayProjects()
   displayTodos()
 }
@@ -81,6 +82,13 @@ function displayTodos() {
     const dueDate = document.createElement('p')
     const priorLabel = document.createElement('label')
     const prior = document.createElement('p')
+    const removeBtn = document.createElement('button')
+
+    removeBtn.textContent = 'remove'
+    removeBtn.onclick = () => {
+      removeTodo(todo)
+      displayTodos()
+    }
 
     dateLabel.textContent = 'Due Date:'
     priorLabel.textContent = 'Priority:'
@@ -90,7 +98,7 @@ function displayTodos() {
     dueDate.textContent = todo.dueDate
     prior.textContent = todo.priority
 
-    div.append(title, desc, dateLabel, dueDate, priorLabel, prior)
+    div.append(title, desc, dateLabel, dueDate, priorLabel, prior, removeBtn)
     todosDiv.append(div)
   })
 }

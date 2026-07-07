@@ -7,6 +7,15 @@ class Project {
     addTodo(todo) {
         this.todos.push(todo)
     }
+
+    removeTodo(todo) {
+        const index = this.todos.indexOf(todo)
+
+        if (index > -1) {
+            this.todos.splice(index, 1)
+        }
+        console.log(index)
+    }
 }
 
 class ToDo {
