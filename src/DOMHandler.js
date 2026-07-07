@@ -82,12 +82,18 @@ function displayTodos() {
     const dueDate = document.createElement('p')
     const priorLabel = document.createElement('label')
     const prior = document.createElement('p')
-    const removeBtn = document.createElement('button')
 
+    const removeBtn = document.createElement('button')
     removeBtn.textContent = 'remove'
     removeBtn.onclick = () => {
       removeTodo(todo)
       displayTodos()
+    }
+
+    const completeBtn = document.createElement('button')
+    completeBtn.textContent = 'complete'
+    completeBtn.onclick = () => {
+      div.classList.toggle('completed')
     }
 
     dateLabel.textContent = 'Due Date:'
@@ -98,7 +104,7 @@ function displayTodos() {
     dueDate.textContent = todo.dueDate
     prior.textContent = todo.priority
 
-    div.append(title, desc, dateLabel, dueDate, priorLabel, prior, removeBtn)
+    div.append(title, desc, dateLabel, dueDate, priorLabel, prior, removeBtn, completeBtn)
     todosDiv.append(div)
   })
 }

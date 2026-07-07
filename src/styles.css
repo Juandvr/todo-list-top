@@ -53,3 +53,7 @@
     padding: 10px;
     justify-content: center;
 }
+
+.completed {
+    text-decoration: line-through;
+}
