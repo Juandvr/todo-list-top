@@ -1,4 +1,4 @@
-import { createTodo, createProject, loadTodos, projects, todos } from './dataHandler.js'
+import { createTodo, createProject, reviveProjects, projects } from './dataHandler.js'
 
 const projectsDiv = document.getElementById('projects')
 const projectModal = document.getElementById('projectModal')
@@ -31,7 +31,7 @@ window.onclick = event => {
 }
 
 window.onload = () => {
-  loadTodos()
+  reviveProjects()
   displayProjects()
   displayTodos()
 }
@@ -63,7 +63,7 @@ function displayProjects() {
     span.textContent = project.title
     span.onclick = () => {
       activeProject = project
-      console.log(activeProject.title)
+      displayTodos()
     }
     projectsDiv.append(span)
   })
@@ -71,7 +71,7 @@ function displayProjects() {
 
 function displayTodos() {
   todosDiv.replaceChildren()
-  todos.forEach(todo => {
+  activeProject.todos.forEach(todo => {
     const div = document.createElement('div')
     div.className = 'todoDiv'
 
