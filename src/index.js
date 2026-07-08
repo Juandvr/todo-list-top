@@ -1,2 +1,5 @@
-import './styles.css'
+import './main.css'
+import './modal.css'
+import './sidebar.css'
+import './card.css'
 import './DOMHandler.js'
