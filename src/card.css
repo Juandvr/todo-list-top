@@ -1,0 +1,55 @@
+.todoDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todoDiv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+}
+
+.todoActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.todoActions .removeBtn,
+.todoActions .completeBtn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.todoActions .removeBtn {
+  background: #a32222;
+  border: 1px solid #fca5a5;
+}
+
+.todoActions .completeBtn {
+  background: #25b357;
+  border: 1px solid #86efac;
+}
+
+.todoActions .removeBtn:hover,
+.todoActions .completeBtn:hover {
+  transform: translateY(-1px);
+}
+
+.completed {
+    text-decoration: line-through;
+}

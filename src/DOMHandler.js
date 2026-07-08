@@ -1,4 +1,6 @@
 import { createTodo, createProject, reviveProjects, removeTodo, projects } from './dataHandler.js'
+import checkIcon from './check.svg'
+import trashIcon from './delete.svg'
 
 const projectsDiv = document.getElementById('projects')
 const projectModal = document.getElementById('projectModal')
@@ -83,18 +85,26 @@ function displayTodos() {
     const priorLabel = document.createElement('label')
     const prior = document.createElement('p')
 
-    const removeBtn = document.createElement('button')
+    const removeBtn = new Image()
+    removeBtn.src = trashIcon
+    removeBtn.className = 'removeBtn'
     removeBtn.textContent = 'remove'
     removeBtn.onclick = () => {
       removeTodo(todo)
       displayTodos()
     }
 
-    const completeBtn = document.createElement('button')
+    const completeBtn = new Image()
+    completeBtn.src = checkIcon
+    completeBtn.className = 'completeBtn'
     completeBtn.textContent = 'complete'
     completeBtn.onclick = () => {
       div.classList.toggle('completed')
     }
+
+    const actions = document.createElement('div')
+    actions.className = 'todoActions'
+    actions.append(removeBtn, completeBtn)
 
     dateLabel.textContent = 'Due Date:'
     priorLabel.textContent = 'Priority:'
@@ -104,7 +114,7 @@ function displayTodos() {
     dueDate.textContent = todo.dueDate
     prior.textContent = todo.priority
 
-    div.append(title, desc, dateLabel, dueDate, priorLabel, prior, removeBtn, completeBtn)
+    div.append(title, desc, dateLabel, dueDate, priorLabel, prior, actions)
     todosDiv.append(div)
   })
 }
