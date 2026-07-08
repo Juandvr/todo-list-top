@@ -22,13 +22,17 @@ newProjectBtn.onclick = () => {
   projectModal.style.display = 'block'
 }
 
-closeBtn.onclick = () => {
-  todoModal.style.display, projectModal.style.display = 'none'
+for (let btn of closeBtn) {
+  btn.onclick = () => {
+    todoModal.style.display = 'none'
+    projectModal.style.display = 'none'
+  }
 }
 
 window.onclick = event => {
   if (event.target == projectModal || event.target == todoModal ) {
-    todoModal.style.display, projectModal.style.display = 'none'
+    todoModal.style.display = 'none'
+    projectModal.style.display = 'none'
   }
 }
 
