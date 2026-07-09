@@ -13,10 +13,15 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
+      favicon: "./src/favicon.svg",
     }),
   ],
   module: {
     rules: [
+      {
+        test: /\.html$/i,
+        use: ["html-loader"],
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
