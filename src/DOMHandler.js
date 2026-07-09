@@ -1,4 +1,4 @@
-import { createTodo, createProject, reviveProjects, removeTodo, projects } from './dataHandler.js'
+import { createTodo, createProject, reviveProjects, removeTodo, removeProject, projects } from './dataHandler.js'
 import checkIcon from './check.svg'
 import trashIcon from './delete.svg'
 
@@ -65,6 +65,11 @@ todoForm.onsubmit = event => {
 
 function displayProjects() {
   projectsDiv.replaceChildren()
+
+  if (!activeProject || !projects.includes(activeProject)) {
+    activeProject = projects[0]
+  }
+
   projects.forEach(project => {
     const span = document.createElement('span')
     span.textContent = project.title
@@ -72,11 +77,26 @@ function displayProjects() {
       activeProject = project
       displayTodos()
     }
-    projectsDiv.append(span)
+
+    const deleteBtn = new Image()
+    deleteBtn.src = trashIcon
+    deleteBtn.className = 'removeBtn'
+    deleteBtn.onclick = () => {
+      removeProject(project)
+    }
+
+    const projectDiv = document.createElement('div')
+    projectDiv.append(span, deleteBtn)
+
+    projectsDiv.append(projectDiv)
   })
 }
 
 function displayTodos() {
+  if (!activeProject || !projects.includes(activeProject)) {
+    activeProject = projects[0]
+  }
+
   todosDiv.replaceChildren()
   activeProject.todos.forEach(todo => {
     const div = document.createElement('div')
@@ -123,4 +143,4 @@ function displayTodos() {
   })
 }
 
-export { activeProject }
+export { activeProject, displayProjects, displayTodos }
