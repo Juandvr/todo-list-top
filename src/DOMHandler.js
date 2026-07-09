@@ -71,21 +71,30 @@ function displayProjects() {
   }
 
   projects.forEach(project => {
-    const span = document.createElement('span')
-    span.textContent = project.title
-    span.onclick = () => {
+    const projectDiv = document.createElement('div')
+    projectDiv.className = 'project-item'
+    if (project === activeProject) {
+      projectDiv.classList.add('active')
+    }
+    projectDiv.onclick = () => {
       activeProject = project
+      displayProjects()
       displayTodos()
     }
+
+    const span = document.createElement('span')
+    span.textContent = project.title
 
     const deleteBtn = new Image()
     deleteBtn.src = trashIcon
     deleteBtn.className = 'removeBtn'
-    deleteBtn.onclick = () => {
+    deleteBtn.onclick = (e) => {
+      e.stopPropagation()
       removeProject(project)
+      displayProjects()
+      displayTodos()
     }
 
-    const projectDiv = document.createElement('div')
     projectDiv.append(span, deleteBtn)
 
     projectsDiv.append(projectDiv)
